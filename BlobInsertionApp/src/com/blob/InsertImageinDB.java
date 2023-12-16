@@ -13,7 +13,6 @@ import com.jdbc.statement.JDBCUtil;
 public class InsertImageinDB {
 
 	public static void main(String[] args) throws IOException, SQLException {
-		// TODO Auto-generated method stub
 		Connection connection=null;
 		PreparedStatement ps=null;
 		Scanner sc=null;
