@@ -14,7 +14,6 @@ import com.jdbc.statement.JDBCUtil;
 public class InsertPdfinDB {
 
 	public static void main(String[] args) throws SQLException, IOException {
-		// TODO Auto-generated method stub
 		Connection connection=null;
 		PreparedStatement ps=null;
 		Scanner sc=null;
