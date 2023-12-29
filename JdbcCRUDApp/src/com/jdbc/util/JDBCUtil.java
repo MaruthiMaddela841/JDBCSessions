@@ -1,14 +1,13 @@
 package com.jdbc.util;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Properties;
+
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 
 public class JDBCUtil {
 	
@@ -29,16 +28,20 @@ public class JDBCUtil {
 	public static Connection getJDBCConnection() throws SQLException, IOException{
 		// TODO Auto-generated method stub
 		
-		FileInputStream fis= new FileInputStream("C:\\Users\\marut\\eclipse-workspace\\BlobInsertionApp\\src\\com\\properties\\application.properties");
-		Properties properties= new Properties();
-		properties.load(fis);
+//		FileInputStream fis= new FileInputStream("D:\\iNeuron\\Git\\JdbcCRUDApp\\src\\com\\properties\\application.properties");
+//		Properties properties= new Properties();
+//		properties.load(fis);
+//		
+//		String url=properties.getProperty("url");
+//		String username=properties.getProperty("username");
+//		String password=properties.getProperty("password");
+//		Connection connection=DriverManager.getConnection(url,username,password);
 		
-		String url=properties.getProperty("url");
-		String username=properties.getProperty("username");
-		String password=properties.getProperty("password");
-		Connection connection=DriverManager.getConnection(url,username,password);
+		HikariConfig config= new HikariConfig("src\\com\\properties\\application.properties");
+		HikariDataSource dataSource= new HikariDataSource(config);
+		
 		System.out.println("Connection Established.....");
-		return connection;
+		return dataSource.getConnection();
 	}
 	
 	public static void cleanUp(Connection connection,Statement statement,ResultSet resultSet) throws SQLException {

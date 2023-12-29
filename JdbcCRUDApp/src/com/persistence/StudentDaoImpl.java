@@ -122,4 +122,31 @@ public class StudentDaoImpl implements IStudentDao {
 		return null;
 	}
 
+	@Override
+	public String updateStudent(Student student) {
+		String sqlQuery="update students set name=?,age=?,address=? where id=?;";
+		try {
+			connection=JDBCUtil.getJDBCConnection();
+			if(connection!=null)
+				ps=connection.prepareStatement(sqlQuery);
+			if(ps!=null) {
+				ps.setString(1, student.getSname());
+				ps.setInt(2, student.getSage());
+				ps.setString(3,student.getAddress());
+				ps.setInt(4, student.getSid());
+				Integer i=ps.executeUpdate();
+				if(i==1) {
+					return "success";
+				}
+				else {
+					return "not found";
+				}
+			}
+		}
+		catch(SQLException | IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 }

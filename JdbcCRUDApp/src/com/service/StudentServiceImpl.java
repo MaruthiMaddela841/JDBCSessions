@@ -30,4 +30,11 @@ public class StudentServiceImpl implements IStudentService {
 		return studentDao.deleteStudent(id);
 	}
 
+	@Override
+	public String updateStudent(Student student) {
+		IStudentDao studentDao=StudentDaoFactory.getStudentDao();
+		
+		return studentDao.updateStudent(student);
+	}
+
 }
